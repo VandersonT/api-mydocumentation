@@ -1,0 +1,65 @@
+System CRUD:
+
+/*--------------------ADMIN--------------------*/
+POST /registerStaff - Register a new staff
+POST /login - do login
+POST /auth - do authentication
+PUT /editStaff - Edit a staff
+DELETE /deleteStaff - Delete a staff
+GET /staffs - Get all staff
+GET /staffs/:id - Get a specific staff
+/*---------------------------------------------*/
+
+/*----------------DOCUMENTATION----------------*/
+POST /createDoc - Create a new documentation
+GET /docs - Get all documentation
+GET /doc/:id - Get a specific documentation
+PUT /editDoc/:id - Edit a specific documentation
+DELETE /deleteDoc/:id - Delete a specific documentation
+/*---------------------------------------------*/
+
+
+/*--------------------MODULE--------------------*/
+POST /createModule - Create a new module
+GET /modules - Get all modules
+GET /modules/:id - Get a specific module
+PUT /editModule/:id - Edit a specific module
+DELETE /deleteModule/:id - Delete a specific module
+/*---------------------------------------------*/
+
+
+/*--------------------TOPIC--------------------*/
+POST /createTopic - Create a new topic
+GET /topics - Get all topics
+GET /topics/:id - Get a specific topic
+PUT /editTopic/:id - Edit a specific topic
+DELETE /delete/:id - Delete a specific topic
+/*---------------------------------------------*/
+
+
+/*-------------------SYSTEM--------------------*/
+POST /createSystem - Create a new system status
+GET /system - Get system status
+PUT /updateSystem - Update system status
+/*---------------------------------------------*/
+
+
+/*--------------------VIEW---------------------*/
+POST /createView - Create a new view
+GET /views - Get all views
+/*---------------------------------------------*/
+
+
+/*-----------------DOCS_VIEW-------------------*/
+POST /addDocView - Add a new view on the doc
+GET /docView/:id - Get all view of a specific doc
+/*---------------------------------------------*/
+
+
+/*-------------------MEDIA---------------------*/
+POST /sendMedia - Send a new media
+PUT /editMedia - Edit a media
+DELETE /deleteMedia/:id - Delete a media
+GET /media/:id - Get a specific media
+GET /medias - Get all media
+/*---------------------------------------------*/

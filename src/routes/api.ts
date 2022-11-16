@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import * as ApiController from '../controllers/apiController';
+import * as ApiController from '../controllers/adminController';
 
 
 const router = Router();
 
-router.get('/ping', ApiController.ping);
+router.post('/staff', ApiController.registerStaff);
 
 export default router;
