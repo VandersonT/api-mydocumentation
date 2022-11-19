@@ -2,8 +2,10 @@ import { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import * as helper from '../handler/HelperHandler';
 import * as staff from '../handler/StaffHandler';
+import { Admin } from '../models/Admin';
 
 dotenv.config();
+
 
 export const registerStaff = async (req: Request, res: Response) => {
 
@@ -17,7 +19,7 @@ export const registerStaff = async (req: Request, res: Response) => {
 
     /*Check email*/
     if(!helper.emailValidate(email)){
-        res.json({error: "email is not valid"});
+        res.json({error: "Enter a valid email address"});
         return;
     }
 
@@ -37,5 +39,35 @@ export const registerStaff = async (req: Request, res: Response) => {
     /*Save user data to the data base*/
     let createdUser = await staff.createStaff(name, email, encryptedPassword, token, phone, position);
 
+    /*Return the result*/
     res.json({error: "", createdUser});
+}
+
+
+export const loginStaff = async (req: Request, res: Response) => {
+    
+    let { email, password } = req.body;
+
+    /*Check Empty Fields*/
+    if(!email || !password){
+        res.json({error: "Please, fill in all fields"});
+        return;
+    }
+
+    /*Check email*/
+    if(!helper.emailValidate(email)){
+        res.json({error: "Enter a valid email address"});
+        return;
+    }
+
+    /*Check Login*/
+    let token =  await staff.signIn(email, password);
+
+    if(!token){
+        res.json({error: 'Email and/or password is incorrect'});
+        return;
+    }
+
+    /*Return the result*/
+    res.json({error: '', token});
 }
