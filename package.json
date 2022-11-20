@@ -1,13 +1,13 @@
 {
   "name": "api-mydocumentation",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project is an API for the 'mydocumentation' system, it controls all the data in it.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon -e ts,json src/server.ts"
   },
-  "author": "",
+  "author": "Vanderson Tiago de Paulo",
   "license": "ISC",
   "dependencies": {
     "@types/cors": "^2.8.12",
