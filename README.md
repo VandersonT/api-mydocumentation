@@ -41,6 +41,9 @@ npx sequelize db:migrate
 
 #Create the default data
 npx sequelize db:seed:all
+
+#And finally run the server
+npm run dev
 ```
 Now you are ready to start.
 
