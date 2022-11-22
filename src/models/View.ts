@@ -1,22 +1,27 @@
 import { Model, DataTypes } from 'sequelize';
+import internal from 'stream';
 import { sequelize } from '../instances/pg';
 
-export interface TesteInstance extends Model {
+export interface ViewInstance extends Model {
     id: number;
-    name: string;
+    ip: string;
+    date: Date;
 }
 
-export const Teste = sequelize.define<TesteInstance>('Teste', {
+export const Admin = sequelize.define<ViewInstance>('view', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
-    name: {
+    ip: {
         type: DataTypes.STRING,
-    }
+    },
+    date: {
+        type: DataTypes.DATE,
+    },
 },
 {
-    tableName: 'teste',
+    tableName: 'view',
     timestamps: false
 });
