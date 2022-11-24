@@ -61,3 +61,10 @@ export const auth = async (token: string) => {
 
     return (userFound.length > 0) ? userFound : false;
 }
+
+export const deleteStaff = async (id: number) => {
+
+    let removedUser = await Admin.destroy({where: { id }});
+
+    return (removedUser) ? true : false;
+}

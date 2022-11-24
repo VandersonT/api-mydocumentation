@@ -64,12 +64,12 @@ export const loginStaff = async (req: Request, res: Response) => {
     /*Check Login*/
     let token =  await staff.signIn(email, password);
 
+    /*Return the result*/
     if(!token){
         res.json({error: 'Email and/or password is incorrect'});
         return;
     }
 
-    /*Return the result*/
     res.json({error: '', token});
 }
 
@@ -87,11 +87,35 @@ export const authentication = async (req: Request, res: Response) => {
     /*Check if the token is valid*/
     let userFound =  await staff.auth(token);
     
+
+    /*Return the result*/
     if(!userFound){
         res.json({error: "The sent token isn't associated with any account."});
         return;
     }
 
-    /*Return the result*/
     res.json({error: '', userFound});
+}
+
+export const deleteStaff = async (req: Request, res: Response) => {
+    
+    let { id } = req.params;
+
+    /*Check id field*/
+    if(!id){
+        res.json({error: "You must send us an id."});
+        return;
+    }
+
+    /*try to remove admin*/
+    let wasRemoved =  await staff.deleteStaff(parseInt(id));
+
+
+    /*Return the result*/
+    if(!wasRemoved){
+        res.json({error: "We couldn't find anyone with that id"});
+        return;
+    }
+
+    res.json({error: ''});
 }
