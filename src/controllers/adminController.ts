@@ -24,6 +24,14 @@ export const registerStaff = async (req: Request, res: Response) => {
         return;
     }
 
+    /*Check if email already exists*/
+    let emailExists = await staff.emailAlreadyExists(email);
+    
+    if(emailExists){
+        res.json({error: "Email already exists."});
+        return;
+    }
+
     /*Check password*/
     if(!helper.passwordValidate(pass)){
         res.json({error: "Your password is too weak"});

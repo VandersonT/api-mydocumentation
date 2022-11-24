@@ -24,6 +24,13 @@ export const createStaff = async (name: string, email: string, encryptedPassword
     return filteredUser;
 }
 
+export const emailAlreadyExists = async (email: string) => {
+
+    let userFound = await Admin.findAll({where: { email }});
+
+    return (userFound.length > 0) ? true : false;
+}
+
 
 export const signIn = async (email: string, password: string) => {
 
