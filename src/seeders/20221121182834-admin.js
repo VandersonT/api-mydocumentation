@@ -9,7 +9,7 @@ module.exports = {
         {
           name: 'Vanderson Tiago',
           email: 'vandersontpaulo@gmail.com',
-          pass: '123',
+          pass: '3d0559a2b72552',
           token: '',
           phone: '(33) 98886-0799',
           position: 2,

@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import * as helper from '../handler/HelperHandler';
 import * as staff from '../handler/StaffHandler';
 import { Admin } from '../models/Admin';
+import { off } from 'process';
 
 dotenv.config();
 
@@ -34,7 +35,7 @@ export const registerStaff = async (req: Request, res: Response) => {
 
 
     /*Create a new token*/
-    const token = helper.createToken(255);
+    const token = helper.createToken(200);
 
     /*Save user data to the data base*/
     let createdUser = await staff.createStaff(name, email, encryptedPassword, token, phone, position);
@@ -70,4 +71,27 @@ export const loginStaff = async (req: Request, res: Response) => {
 
     /*Return the result*/
     res.json({error: '', token});
+}
+
+
+export const authentication = async (req: Request, res: Response) => {
+
+    let { token } = req.body;
+
+    /*Check field*/
+    if(!token){
+        res.json({error: 'Token field is empty'});
+        return;
+    }
+
+    /*Check if the token is valid*/
+    let userFound =  await staff.auth(token);
+    
+    if(!userFound){
+        res.json({error: "The sent token isn't associated with any account."});
+        return;
+    }
+
+    /*Return the result*/
+    res.json({error: '', userFound});
 }

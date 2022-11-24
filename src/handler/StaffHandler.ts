@@ -19,6 +19,8 @@ export const createStaff = async (name: string, email: string, encryptedPassword
 
     let filteredUser = {name, email, phone, position, token, created_at: createdUser.created_at};
     
+    console.log('Então: '+filteredUser);
+
     return filteredUser;
 }
 
@@ -40,10 +42,22 @@ export const signIn = async (email: string, password: string) => {
 
         if(encryptedPassword === userFound[0]['pass']){
             let token = userFound[0]['token'];
-            return token = userFound[0]['token'];
+            return token;
         }
 
     }
 
     return false;
+}
+
+export const auth = async (token: string) => {
+
+    //Check token and return the user if it was found
+    let userFound = await Admin.findAll({
+        attributes: ['name', 'email', 'phone', 'position', 'token',],
+        where:{token},
+        limit: 1
+    });
+
+    return (userFound.length > 0) ? userFound : false;
 }
