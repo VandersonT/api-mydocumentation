@@ -1,13 +1,15 @@
 /*
- 
-    This file is just for dealing with the staff database
 
+    NOTE: This file is just for dealing with the staff database
+    
 */
 
+/*--------------------------Imports--------------------------*/
 import { stringify } from 'querystring';
 import { Admin } from '../models/Admin';
 import * as helper from '../handler/HelperHandler';
 import dotenv from 'dotenv';
+/*-----------------------------------------------------------*/
 
 dotenv.config();
 

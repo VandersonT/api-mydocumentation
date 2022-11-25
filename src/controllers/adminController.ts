@@ -1,9 +1,12 @@
+/*--------------------------Imports--------------------------*/
 import { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import * as helper from '../handler/HelperHandler';
 import * as staff from '../handler/StaffHandler';
 import { Admin } from '../models/Admin';
 import { off } from 'process';
+/*----------------------------------------------------------*/
+
 
 dotenv.config();
 
@@ -105,6 +108,7 @@ export const authentication = async (req: Request, res: Response) => {
     res.json({error: '', userFound});
 }
 
+
 export const editStaff = async (req: Request, res: Response) => {
 
     let { id } = req.params;
@@ -135,7 +139,6 @@ export const editStaff = async (req: Request, res: Response) => {
         passAux = helper.encryptPassword(pass, process.env.ENCRYPTION_PASS as string);
     }
 
-
     /*Try to edit the user*/
     let editedUser = await staff.editUser(parseInt(id), name, email, passAux, phone, position);
 
@@ -147,6 +150,7 @@ export const editStaff = async (req: Request, res: Response) => {
 
     res.json({error: "", editedUser});
 }
+
 
 export const deleteStaff = async (req: Request, res: Response) => {
     

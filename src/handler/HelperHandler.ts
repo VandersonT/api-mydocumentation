@@ -1,3 +1,9 @@
+/*
+
+    NOTE: This file is just for handling all repetitive and non-database messing around tasks.
+    
+*/
+
 export const emailValidate = (email: string) => {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
