@@ -105,6 +105,49 @@ export const authentication = async (req: Request, res: Response) => {
     res.json({error: '', userFound});
 }
 
+export const editStaff = async (req: Request, res: Response) => {
+
+    let { id } = req.params;
+    let { name, email, pass, phone, position } = req.body;
+
+    /*Check id field*/
+    if(!id){
+        res.json({error: "You must send us an id."});
+        return;
+    }
+
+    /*Check email if it was sent*/
+    if(email && !helper.emailValidate(email)){
+        res.json({error: "Enter a valid email address"});
+        return;
+    }
+
+
+     /*Check password if it was sent*/
+     let passAux = "";
+     if(pass){
+        //heck if the password is valid
+        if(!helper.passwordValidate(pass)){
+            res.json({error: "Your password is too weak"});
+            return;
+        }
+        //Encrypt user password
+        passAux = helper.encryptPassword(pass, process.env.ENCRYPTION_PASS as string);
+    }
+
+
+    /*Try to edit the user*/
+    let editedUser = await staff.editUser(parseInt(id), name, email, passAux, phone, position);
+
+    /*Return the result*/
+    if(!editedUser){
+        res.json({error: "We couldn't find the user with that id"});
+        return;
+    }
+
+    res.json({error: "", editedUser});
+}
+
 export const deleteStaff = async (req: Request, res: Response) => {
     
     let { id } = req.params;

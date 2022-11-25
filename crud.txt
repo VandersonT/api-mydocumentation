@@ -4,8 +4,8 @@ System CRUD:
 POST /registerStaff - Register a new staff [V]
 POST /login - do login [V]
 POST /auth - do authentication [V]
-PUT /editStaff - Edit a staff
-DELETE /deleteStaff - Delete a staff
+PUT /staff - Edit a staff
+DELETE /staff - Delete a staff
 GET /staffs - Get all staff
 GET /staffs/:id - Get a specific staff
 /*---------------------------------------------*/

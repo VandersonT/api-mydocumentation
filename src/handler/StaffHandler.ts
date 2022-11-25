@@ -1,3 +1,9 @@
+/*
+ 
+    This file is just for dealing with the staff database
+
+*/
+
 import { stringify } from 'querystring';
 import { Admin } from '../models/Admin';
 import * as helper from '../handler/HelperHandler';
@@ -74,4 +80,22 @@ export const deleteStaff = async (id: number) => {
     let removedUser = await Admin.destroy({where: { id }});
 
     return (removedUser) ? true : false;
+}
+
+export const editUser = async (id: number, name: string, email: string, pass: string, phone: string, position: number) => {
+
+    let userFound = await Admin.findByPk(id);
+    
+    if(userFound){
+        if(name) userFound.name = name;
+        if(email) userFound.email = email;
+        if(pass) userFound.pass = pass;
+        if(phone) userFound.phone = phone;
+        if(position) userFound.position = position;
+        await userFound.save();
+
+        return userFound;
+    }
+
+    return false;
 }
