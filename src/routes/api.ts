@@ -22,6 +22,8 @@ router.get('/staff/:id', AdminController.getAdmin);
 router.get('/docs', DocController.getDocs);
 router.get('/doc/:id', DocController.getDoc);
 router.delete('/doc/:id', DocController.deleteDoc);
+router.post('/doc', DocController.addNewDoc);
+router.put('/doc', DocController.updateDoc);
 /*------------------------------------------------------*/
 
 

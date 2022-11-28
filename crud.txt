@@ -11,10 +11,10 @@ GET /staff/:id - Get a specific staff[V]
 /*---------------------------------------------*/
 
 /*----------------DOCUMENTATION----------------*/
-POST /doc - Create a new documentation
+POST /doc - Create a new documentation[V]
 GET /docs - Get all documentation[V]
 GET /doc/:id - Get a specific documentation[V]
-PUT /doc/:id - Edit a specific documentation
+PUT /doc/:id - Edit a specific documentation[V]
 DELETE /doc/:id - Delete a specific documentation[V]
 /*---------------------------------------------*/
 

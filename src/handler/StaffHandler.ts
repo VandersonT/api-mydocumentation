@@ -25,8 +25,6 @@ export const createStaff = async (name: string, email: string, encryptedPassword
     });
 
     let filteredUser = {name, email, phone, position, token, created_at: createdUser.created_at};
-    
-    console.log('Então: '+filteredUser);
 
     return filteredUser;
 }
