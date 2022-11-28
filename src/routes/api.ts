@@ -12,6 +12,8 @@ router.post('/login', ApiController.loginStaff);
 router.post('/auth', ApiController.authentication);
 router.put('/staff/:id', ApiController.editStaff);
 router.delete('/staff/:id', ApiController.deleteStaff);
+router.get('/staff', ApiController.getAllAdmins);
+router.get('/staff/:id', ApiController.getAdmin);
 /*------------------------------------------------------*/
 
 

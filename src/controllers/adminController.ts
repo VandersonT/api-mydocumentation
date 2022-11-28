@@ -174,3 +174,35 @@ export const deleteStaff = async (req: Request, res: Response) => {
 
     res.json({error: ''});
 }
+
+
+export const getAllAdmins = async (req: Request, res: Response) => {
+
+    let admins = await staff.getAllAdmins();
+
+    res.json({error: "", admins});
+}
+
+export const getAdmin = async (req: Request, res: Response) => {
+
+    let { id } = req.params;
+
+    /*Check id field*/
+    if(!id){
+        res.json({error: "You must send us an id."})
+        return;
+    }
+
+
+    /*Search for the admin*/
+    let admin = await staff.getAdmin(parseInt(id));
+
+    if(!admin){
+        res.json({error: "We couldn't find the admin with that id."})
+        return;
+    }
+
+
+    /*Return the result*/
+    res.json({error: "", admin});
+}

@@ -7,7 +7,7 @@ POST /auth - do authentication [V]
 PUT /staff - Edit a staff [V]
 DELETE /staff - Delete a staff [V]
 GET /staffs - Get all staff
-GET /staffs/:id - Get a specific staff
+GET /staff/:id - Get a specific staff
 /*---------------------------------------------*/
 
 /*----------------DOCUMENTATION----------------*/
