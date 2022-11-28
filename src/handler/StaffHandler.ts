@@ -5,7 +5,6 @@
 */
 
 /*--------------------------Imports--------------------------*/
-import { stringify } from 'querystring';
 import { Admin } from '../models/Admin';
 import * as helper from '../handler/HelperHandler';
 import dotenv from 'dotenv';

@@ -11,7 +11,7 @@ export interface TopicInstance extends Model {
     meta_tags: string;
 }
 
-export const Admin = sequelize.define<TopicInstance>('topic', {
+export const Topic = sequelize.define<TopicInstance>('topic', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

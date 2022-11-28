@@ -13,7 +13,7 @@ export interface DocumentationInstance extends Model {
     last_author: number;
 }
 
-export const Admin = sequelize.define<DocumentationInstance>('documentation', {
+export const Doc = sequelize.define<DocumentationInstance>('documentation', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

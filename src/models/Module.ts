@@ -8,7 +8,7 @@ export interface ModuleInstance extends Model {
     doc_id: number;
 }
 
-export const Admin = sequelize.define<ModuleInstance>('module', {
+export const Module = sequelize.define<ModuleInstance>('module', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

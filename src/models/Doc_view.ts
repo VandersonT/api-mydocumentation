@@ -8,7 +8,7 @@ export interface Doc_viewInstance extends Model {
     doc_id: number;
 }
 
-export const Admin = sequelize.define<Doc_viewInstance>('doc_view', {
+export const DocView = sequelize.define<Doc_viewInstance>('doc_view', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

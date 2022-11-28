@@ -10,7 +10,7 @@ export interface MediaInstance extends Model {
     created_at: Date;
 }
 
-export const Admin = sequelize.define<MediaInstance>('media', {
+export const Media = sequelize.define<MediaInstance>('media', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

@@ -8,7 +8,7 @@ export interface SystemInstance extends Model {
     version: string;
 }
 
-export const Admin = sequelize.define<SystemInstance>('system', {
+export const System = sequelize.define<SystemInstance>('system', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

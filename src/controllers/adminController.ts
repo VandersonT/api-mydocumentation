@@ -3,8 +3,6 @@ import { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import * as helper from '../handler/HelperHandler';
 import * as staff from '../handler/StaffHandler';
-import { Admin } from '../models/Admin';
-import { off } from 'process';
 /*----------------------------------------------------------*/
 
 

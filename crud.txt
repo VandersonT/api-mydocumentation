@@ -6,16 +6,16 @@ POST /login - do login [V]
 POST /auth - do authentication [V]
 PUT /staff - Edit a staff [V]
 DELETE /staff - Delete a staff [V]
-GET /staffs - Get all staff
-GET /staff/:id - Get a specific staff
+GET /staffs - Get all staff[V]
+GET /staff/:id - Get a specific staff[V]
 /*---------------------------------------------*/
 
 /*----------------DOCUMENTATION----------------*/
-POST /createDoc - Create a new documentation
-GET /docs - Get all documentation
-GET /doc/:id - Get a specific documentation
-PUT /editDoc/:id - Edit a specific documentation
-DELETE /deleteDoc/:id - Delete a specific documentation
+POST /doc - Create a new documentation
+GET /docs - Get all documentation[V]
+GET /doc/:id - Get a specific documentation[V]
+PUT /doc/:id - Edit a specific documentation
+DELETE /doc/:id - Delete a specific documentation[V]
 /*---------------------------------------------*/
 
 

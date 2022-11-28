@@ -1,23 +1,27 @@
 /*--------------------------Imports--------------------------*/
 import { Router } from 'express';
-import * as ApiController from '../controllers/adminController';
+import * as AdminController from '../controllers/adminController';
+import * as DocController from '../controllers/docController';
 /*-----------------------------------------------------------*/
 
 
 const router = Router();
 
 /*------------------Staff-Routes------------------------*/
-router.post('/staff', ApiController.registerStaff);
-router.post('/login', ApiController.loginStaff);
-router.post('/auth', ApiController.authentication);
-router.put('/staff/:id', ApiController.editStaff);
-router.delete('/staff/:id', ApiController.deleteStaff);
-router.get('/staff', ApiController.getAllAdmins);
-router.get('/staff/:id', ApiController.getAdmin);
+router.post('/staff', AdminController.registerStaff);
+router.post('/login', AdminController.loginStaff);
+router.post('/auth', AdminController.authentication);
+router.put('/staff/:id', AdminController.editStaff);
+router.delete('/staff/:id', AdminController.deleteStaff);
+router.get('/staff', AdminController.getAllAdmins);
+router.get('/staff/:id', AdminController.getAdmin);
 /*------------------------------------------------------*/
 
 
 /*---------------Documentaion-Routes--------------------*/
+router.get('/docs', DocController.getDocs);
+router.get('/doc/:id', DocController.getDoc);
+router.delete('/doc/:id', DocController.deleteDoc);
 /*------------------------------------------------------*/
 
 

@@ -8,7 +8,7 @@ export interface ViewInstance extends Model {
     date: Date;
 }
 
-export const Admin = sequelize.define<ViewInstance>('view', {
+export const View = sequelize.define<ViewInstance>('view', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
