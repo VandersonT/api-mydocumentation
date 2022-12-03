@@ -20,11 +20,11 @@ DELETE /doc/:id - Delete a specific documentation[V]
 
 
 /*--------------------MODULE--------------------*/
-POST /createModule - Create a new module
-GET /modules - Get all modules
-GET /modules/:id - Get a specific module
-PUT /editModule/:id - Edit a specific module
-DELETE /deleteModule/:id - Delete a specific module
+POST /createModule - Create a new module[V]
+GET /modules - Get all modules[V]
+GET /modules/:id - Get a specific module[V]
+PUT /editModule/:id - Edit a specific module[V]
+DELETE /deleteModule/:id - Delete a specific module[V]
 /*---------------------------------------------*/
 
 

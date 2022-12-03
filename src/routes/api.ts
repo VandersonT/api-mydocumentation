@@ -2,6 +2,7 @@
 import { Router } from 'express';
 import * as AdminController from '../controllers/adminController';
 import * as DocController from '../controllers/docController';
+import * as ModuleController from '../controllers/moduleController';
 /*-----------------------------------------------------------*/
 
 
@@ -28,6 +29,11 @@ router.put('/doc', DocController.updateDoc);
 
 
 /*------------------Module-Routes-----------------------*/
+router.get('/module', ModuleController.getModules);
+router.get('/module/:id', ModuleController.getModule);
+router.post('/module', ModuleController.createModule);
+router.put('/module/:id', ModuleController.editModule);
+router.delete('/module/:id', ModuleController.deleteModule);
 /*------------------------------------------------------*/
 
 
