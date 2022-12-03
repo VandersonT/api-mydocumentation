@@ -69,7 +69,8 @@ export const addNewDoc = async (req: Request, res: Response) => {
 
 export const updateDoc = async (req: Request, res: Response) => {
     
-    const { id, name, description, image, author} = req.body;
+    const { id } = req.params;
+    const { name, description, image, author} = req.body;
 
     // Check id field
     if(!id){
@@ -78,7 +79,7 @@ export const updateDoc = async (req: Request, res: Response) => {
     }
 
     /*Try to update*/
-    let updateDoc = await doc.updateDoc(id, name, description, image, parseInt(author));
+    let updateDoc = await doc.updateDoc(parseInt(id), name, description, image, parseInt(author));
 
 
     /*Return the result*/
