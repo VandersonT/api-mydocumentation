@@ -29,11 +29,11 @@ DELETE /deleteModule/:id - Delete a specific module[V]
 
 
 /*--------------------TOPIC--------------------*/
-POST /createTopic - Create a new topic
-GET /topics - Get all topics
-GET /topics/:id - Get a specific topic
-PUT /editTopic/:id - Edit a specific topic
-DELETE /delete/:id - Delete a specific topic
+POST /topic - Create a new topic[V]
+GET /topics - Get all topics[V]
+GET /topic/:id - Get a specific topic[V]
+PUT /topic/:id - Edit a specific topic[V]
+DELETE /topic/:id - Delete a specific topic[V]
 /*---------------------------------------------*/
 
 

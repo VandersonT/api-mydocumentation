@@ -3,6 +3,7 @@ import { Router } from 'express';
 import * as AdminController from '../controllers/adminController';
 import * as DocController from '../controllers/docController';
 import * as ModuleController from '../controllers/moduleController';
+import * as TopicController from '../controllers/topicController';
 /*-----------------------------------------------------------*/
 
 
@@ -29,7 +30,7 @@ router.put('/doc/:id', DocController.updateDoc);
 
 
 /*------------------Module-Routes-----------------------*/
-router.get('/module', ModuleController.getModules);
+router.get('/modules', ModuleController.getModules);
 router.get('/module/:id', ModuleController.getModule);
 router.post('/module', ModuleController.createModule);
 router.put('/module/:id', ModuleController.editModule);
@@ -38,6 +39,11 @@ router.delete('/module/:id', ModuleController.deleteModule);
 
 
 /*-------------------Topic-Routes-----------------------*/
+router.get('/topics', TopicController.getTopics);
+router.get('/topic/:id', TopicController.getTopic);
+router.post('/topic', TopicController.createANewTopic);
+router.put('/topic/:id', TopicController.updateTopic);
+router.delete('/topic/:id', TopicController.deleteTopic);
 /*------------------------------------------------------*/
 
 
