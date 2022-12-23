@@ -26,8 +26,22 @@
 
 # Starting
 <br/>
+Development Url: http://localhost:4000/staff
 
 First thing first, run all the codes in the terminal to start:
+
+### You run if you need the commands below:
+```
+#If you don't have nodemon installed globally
+sudo npm install -g nodemon
+
+#If you don't have ts-node installed globally
+npm install -g ts-node
+
+#If you don't have typescript installed globally
+npm install -g typescript
+```
+### You NEED to run these commands below:
 
 ```
 #Install all the dependencies
