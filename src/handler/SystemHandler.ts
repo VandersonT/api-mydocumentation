@@ -1,12 +1,13 @@
 /*
 
-    NOTE: This file is just for dealing with the staff database
+    NOTE: This file is just for dealing with the System and View database
     
 */
 
 
 /*--------------------------Imports--------------------------*/
 import { System } from '../models/System';
+import { View } from '../models/View';
 /*-----------------------------------------------------------*/
 
 export const getSystemStatus = async () => {
@@ -27,4 +28,21 @@ export const updateSystemStatus = async(status: boolean, id: number) => {
     }
 
     return false;
+}
+
+export const getView = async () => {
+
+    let viewsFound = await View.findAll();
+
+    return viewsFound;
+}
+
+export const addView = async(ip: string) => {
+
+    let createdView = await View.create({
+        ip,
+        date:  new Date()
+    });
+
+    return createdView;
 }

@@ -55,6 +55,8 @@ router.put('/system', SystemController.updateSystemStatus);
 
 
 /*--------------------View-Routes-----------------------*/
+router.get('/views', SystemController.getView);
+router.post('/view', SystemController.addView);
 /*------------------------------------------------------*/
 
 

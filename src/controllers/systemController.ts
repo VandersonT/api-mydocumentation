@@ -33,3 +33,24 @@ export const updateSystemStatus = async (req: Request, res: Response) => {
 
     res.json({error: ''});
 }
+
+export const getView = async(req: Request, res: Response) => {
+
+    let views = await system.getView();
+
+    res.json({error: "", views});
+}
+
+export const addView = async (req: Request, res: Response) => {
+
+    let { ip } = req.body;
+    
+    if(!ip){
+        res.json({error: "You must send us an ip."});
+        return;
+    }
+
+    let addedView = await system.addView(ip);
+
+    res.json({error: ""});
+}
