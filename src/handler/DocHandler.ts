@@ -1,11 +1,12 @@
 /*
 
-    NOTE: This file is just for dealing with the doc database
+    NOTE: This file is just for dealing with the doc and docView database
     
 */
 
 /*--------------------------Imports--------------------------*/
 import { Doc } from '../models/Documentation';
+import { DocView } from '../models/Doc_view';
 /*-----------------------------------------------------------*/
 
 
@@ -62,4 +63,21 @@ export const updateDoc = async (id: number, name: string, description: string, i
     }
 
     return false;
+}
+
+export const getView = (docId: number) => {
+
+    let docViews = DocView.findAll({where: {id: docId}});
+
+    return docViews;
+}
+
+export const addView = async(docId: number, ip: string) => {
+
+    let newView = DocView.create({
+        ip,
+        doc_id: docId
+    });
+
+    return newView;
 }

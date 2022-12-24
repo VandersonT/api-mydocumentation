@@ -90,3 +90,31 @@ export const updateDoc = async (req: Request, res: Response) => {
 
     res.json({error: "", updateDoc});
 }
+
+export const getViews = async (req: Request, res: Response) => {
+
+    let { docId } = req.body;
+
+    if(!docId){
+        res.json({error: "You must send a docId."});
+        return;
+    }
+
+    let docViews = await doc.getView(docId);
+
+    res.json({error: "", docViews});
+}
+
+export const addDocView = async (req: Request, res: Response) => {
+
+    let { docId, ip } = req.body;
+
+    if(!docId || !ip){
+        res.json({error: "You must send an docId and a ip."});
+        return;
+    }
+
+    let newView = await doc.addView(docId, ip);
+
+    res.json({error: ""});
+}

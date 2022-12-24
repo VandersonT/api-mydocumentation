@@ -30,6 +30,12 @@ router.put('/doc/:id', DocController.updateDoc);
 /*------------------------------------------------------*/
 
 
+/*------------------Doc_view-Routes---------------------*/
+router.get('/docViews', DocController.getViews);
+router.post('/docView', DocController.addDocView);
+/*------------------------------------------------------*/
+
+
 /*------------------Module-Routes-----------------------*/
 router.get('/modules', ModuleController.getModules);
 router.get('/module/:id', ModuleController.getModule);
@@ -57,10 +63,6 @@ router.put('/system', SystemController.updateSystemStatus);
 /*--------------------View-Routes-----------------------*/
 router.get('/views', SystemController.getView);
 router.post('/view', SystemController.addView);
-/*------------------------------------------------------*/
-
-
-/*------------------Doc_view-Routes---------------------*/
 /*------------------------------------------------------*/
 
 
