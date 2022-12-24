@@ -4,6 +4,7 @@ import * as AdminController from '../controllers/adminController';
 import * as DocController from '../controllers/docController';
 import * as ModuleController from '../controllers/moduleController';
 import * as TopicController from '../controllers/topicController';
+import * as SystemController from '../controllers/systemController';
 /*-----------------------------------------------------------*/
 
 
@@ -48,6 +49,8 @@ router.delete('/topic/:id', TopicController.deleteTopic);
 
 
 /*-------------------System-Routes----------------------*/
+router.get('/system', SystemController.getSystemStatus);
+router.put('/system', SystemController.updateSystemStatus);
 /*------------------------------------------------------*/
 
 
