@@ -1,6 +1,8 @@
 /*--------------------------Imports--------------------------*/
 import { Request, Response } from 'express';
 import * as system from '../handler/SystemHandler';
+import sharp from 'sharp';
+import { unlink } from 'fs/promises';
 /*----------------------------------------------------------*/
 
 export const getSystemStatus = async (req: Request, res: Response) => {
@@ -53,4 +55,20 @@ export const addView = async (req: Request, res: Response) => {
     let addedView = await system.addView(ip);
 
     res.json({error: ""});
+}
+
+export const uploadFile = async (req: Request, res: Response) => {
+
+    if(req.file){
+
+        await sharp(req.file.path).toFile(`public/media/${req.file.filename}`);
+
+        await unlink(req.file.path);
+
+        res.json({ image: `${req.file.fieldname}` });
+
+    }else{
+        res.status(400);
+        res.json({ error: 'Arquivo invalido.' });    
+    }
 }

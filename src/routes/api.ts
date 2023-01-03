@@ -5,8 +5,35 @@ import * as DocController from '../controllers/docController';
 import * as ModuleController from '../controllers/moduleController';
 import * as TopicController from '../controllers/topicController';
 import * as SystemController from '../controllers/systemController';
+import multer from 'multer';
 /*-----------------------------------------------------------*/
 
+const storageConfig = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './tmp');
+    },
+    filename: (req, file, cb) => {
+        let randomName = Math.floor(Math.random() * 9999999);
+
+        if(file.mimetype == 'image/png')
+            cb(null, `${randomName+Date.now()}.png`);
+        else
+            cb(null, `${randomName+Date.now()}.jpg`);
+        
+    }
+});
+
+const upload = multer({
+    storage: storageConfig,
+    fileFilter: (req, file, cb) => {
+        const allowed: string[] = ['image/jpg', 'image/jpeg', 'image/png'];
+
+        cb(null, allowed.includes(file.mimetype));
+    },
+    limits: {
+        fileSize: 10000000
+    }
+});
 
 const router = Router();
 
@@ -67,6 +94,7 @@ router.post('/view', SystemController.addView);
 
 
 /*-------------------Media-Routes-----------------------*/
+router.post('/upload', upload.single('media'), SystemController.uploadFile);
 /*------------------------------------------------------*/
 
 export default router;
