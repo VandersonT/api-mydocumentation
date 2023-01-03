@@ -8,6 +8,7 @@
 /*--------------------------Imports--------------------------*/
 import { System } from '../models/System';
 import { View } from '../models/View';
+import { Media } from '../models/Media';
 /*-----------------------------------------------------------*/
 
 export const getSystemStatus = async () => {
@@ -45,4 +46,15 @@ export const addView = async(ip: string) => {
     });
 
     return createdView;
+}
+
+export const saveMedia = async (mediaName: string, alternative_text: string, author: number) => {
+
+    let createdUser = await Media.create({
+        name: mediaName,
+        alternative_text,
+        author,
+        created_at: new Date()
+    });
+
 }
