@@ -59,9 +59,9 @@ export const addView = async (req: Request, res: Response) => {
 
 export const uploadFile = async (req: Request, res: Response) => {
 
-    const { altText, author } = req.body;
+    let { title, altText, author } = req.body;
 
-    if(!altText || !author){
+    if(!title || !altText || !author){
         res.json({ error: 'You must submit the image information.' });
         return;
     }
@@ -75,7 +75,7 @@ export const uploadFile = async (req: Request, res: Response) => {
         /*At this point the image is already saved.
         So now we just need to save it in the database and return the result*/
         
-        await system.saveMedia(req.file.filename, altText, author);
+        await system.saveMedia(title, req.file.filename, altText, author);
 
         res.json({ image: req.file.filename });
 
@@ -83,4 +83,70 @@ export const uploadFile = async (req: Request, res: Response) => {
         res.status(400);
         res.json({ error: 'Arquivo invalido.' });    
     }
+}
+
+export const deleteMedia = async (req: Request, res: Response) => {
+
+    let { id } = req.params;
+
+    if(!id){
+        res.json({ error: 'You must submit an id to be deleted.' });
+        return;
+    }
+
+    let deletedMedia = await system.deleteMedia(parseInt(id));
+
+    if(!deletedMedia){
+        res.json({ erro: "We couldn't find any media with that id." });
+        return;
+    }
+
+    res.json({ error: '' })
+}
+
+export const getAllMedia = async (req: Request, res: Response) => {
+
+    let medias = await system.getMedias();
+
+    res.json({ error: '', medias });
+}
+
+export const getMedia = async (req: Request, res: Response) => {
+
+    let { id } = req.params;
+
+    if(!id){
+        res.json({ error: 'You must submit an id to be searched.' });
+        return;
+    }
+
+    let mediaFound = await system.getMedia(parseInt(id));
+
+    if(!mediaFound){
+        res.json({ error: "We couldn't find this id." });
+        return;
+    }
+
+    res.json({ error: '', mediaFound });
+}
+
+export const updateMediaInfo = async (req: Request, res: Response) => {
+
+    let { id } = req.params;
+    let { title, altText } = req.body;
+
+    if(!id){
+        res.json({ error: 'You must submit an id to be searched.' });
+        return;
+    }
+
+    let updatedMedia = await system.updateMedia(parseInt(id), title, altText);
+
+    if(!updatedMedia){
+        res.json({ error: "Couldn't find this id." });
+        return;
+    }
+
+    res.json({ error: '', updatedMedia })
+
 }

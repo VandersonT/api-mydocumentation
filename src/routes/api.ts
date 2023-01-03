@@ -95,6 +95,10 @@ router.post('/view', SystemController.addView);
 
 /*-------------------Media-Routes-----------------------*/
 router.post('/upload', upload.single('media'), SystemController.uploadFile);
+router.delete('/media/:id', SystemController.deleteMedia);
+router.get('/media', SystemController.getAllMedia);
+router.get('/media/:id', SystemController.getMedia);
+router.put('/media/:id', SystemController.updateMediaInfo);
 /*------------------------------------------------------*/
 
 export default router;

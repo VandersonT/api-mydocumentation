@@ -48,13 +48,49 @@ export const addView = async(ip: string) => {
     return createdView;
 }
 
-export const saveMedia = async (mediaName: string, alternative_text: string, author: number) => {
+export const saveMedia = async (title: string, mediaName: string, alternative_text: string, author: number) => {
 
     let createdUser = await Media.create({
+        title,
         name: mediaName,
         alternative_text,
         author,
         created_at: new Date()
     });
 
+}
+
+export const deleteMedia = async (id: number) => {
+
+    let deletedMedia = await Media.destroy({where: { id }});
+
+    return deletedMedia;
+}
+
+export const getMedias = async () => {
+
+    let medias = await Media.findAll();
+
+    return medias;
+}
+
+export const getMedia = async (id: number) => {
+
+    let mediaFound = await Media.findByPk(id);
+
+    return mediaFound;
+}
+
+export const updateMedia = async(id: number, title: string, altText: string) => {
+
+    let mediaFound = await Media.findByPk(id);
+
+    if(mediaFound){
+        if(title) mediaFound.title = title;
+        if(altText) mediaFound.alternative_text = altText;
+        await mediaFound.save();
+        return mediaFound;
+    }
+
+    return false;
 }

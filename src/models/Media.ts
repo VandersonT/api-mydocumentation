@@ -4,6 +4,7 @@ import { sequelize } from '../instances/pg';
 
 export interface MediaInstance extends Model {
     id: number;
+    title: string;
     name: string;
     alternative_text: string;
     author: number;
@@ -15,6 +16,9 @@ export const Media = sequelize.define<MediaInstance>('media', {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
+    },
+    title: {
+        type: DataTypes.STRING,
     },
     name: {
         type: DataTypes.STRING,
