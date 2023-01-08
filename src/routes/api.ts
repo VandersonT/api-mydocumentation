@@ -69,6 +69,7 @@ router.get('/module/:id', ModuleController.getModule);
 router.post('/module', ModuleController.createModule);
 router.put('/module/:id', ModuleController.editModule);
 router.delete('/module/:id', ModuleController.deleteModule);
+router.get('/moduleByDoc/:id', ModuleController.getModuleByDoc);
 /*------------------------------------------------------*/
 
 

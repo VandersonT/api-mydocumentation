@@ -75,3 +75,14 @@ export const deleteModule = async (req: Request, res: Response) => {
 
     res.json({error: ""});
 }
+
+export const getModuleByDoc = async (req: Request, res: Response) => {
+
+    const { id } = req.params;
+
+    /*Search module*/
+    let modulesFound = await moduleH.getModuleByDoc(parseInt(id));
+
+    res.json({error: "", modulesFound});
+
+}

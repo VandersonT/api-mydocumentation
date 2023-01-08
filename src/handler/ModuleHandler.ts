@@ -53,3 +53,13 @@ export const deleteModule = async (id: number) => {
 
     return removedModule;
 }
+
+export const getModuleByDoc = async (id: number) => {
+    
+    let modules = await Module.findAll({
+        where: {doc_id: id}
+    });
+
+    return modules;
+
+}
