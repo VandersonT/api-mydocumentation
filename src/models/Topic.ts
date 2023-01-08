@@ -9,6 +9,7 @@ export interface TopicInstance extends Model {
     module_id: number;
     image: string;
     meta_tags: string;
+    doc_id: number;
 }
 
 export const Topic = sequelize.define<TopicInstance>('topic', {
@@ -31,6 +32,9 @@ export const Topic = sequelize.define<TopicInstance>('topic', {
     },
     meta_tags: {
         type: DataTypes.STRING,
+    },
+    doc_id: {
+        type: DataTypes.NUMBER,
     },
 },
 {

@@ -79,6 +79,7 @@ router.get('/topic/:id', TopicController.getTopic);
 router.post('/topic', TopicController.createANewTopic);
 router.put('/topic/:id', TopicController.updateTopic);
 router.delete('/topic/:id', TopicController.deleteTopic);
+router.get('/topicByDoc/:id', TopicController.getTopicByDoc);
 /*------------------------------------------------------*/
 
 

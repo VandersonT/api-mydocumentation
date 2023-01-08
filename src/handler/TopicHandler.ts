@@ -59,3 +59,12 @@ export const deleteTopic = async (id: number) => {
 
     return deletedTopic;
 }
+
+export const getTopicsByDoc = async (id: number) => {
+
+    let topics = await Topic.findAll({
+        where: {doc_id: id}
+    });
+
+    return topics;
+}

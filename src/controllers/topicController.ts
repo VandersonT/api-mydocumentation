@@ -76,3 +76,12 @@ export const deleteTopic = async (req: Request, res: Response) => {
 
     res.json({error: ""});
 }
+
+export const getTopicByDoc = async (req: Request, res: Response) => {
+
+    const { id } = req.params;
+
+    let topics = await topic.getTopicsByDoc(parseInt(id));
+
+    res.json({error: "", topics});
+}

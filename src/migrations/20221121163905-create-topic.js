@@ -30,6 +30,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      doc_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
     });
     return topicTable;
   },
