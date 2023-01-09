@@ -54,6 +54,7 @@ router.get('/doc/:id', DocController.getDoc);
 router.delete('/doc/:id', DocController.deleteDoc);
 router.post('/doc', DocController.addNewDoc);
 router.put('/doc/:id', DocController.updateDoc);
+router.get('/docBySlug/:slug', DocController.getDocBySlug);
 /*------------------------------------------------------*/
 
 

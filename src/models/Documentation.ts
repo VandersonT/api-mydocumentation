@@ -11,6 +11,7 @@ export interface DocumentationInstance extends Model {
     author: number;
     updated_at: Date;
     last_author: number;
+    slug: string;
 }
 
 export const Doc = sequelize.define<DocumentationInstance>('documentation', {
@@ -39,6 +40,9 @@ export const Doc = sequelize.define<DocumentationInstance>('documentation', {
     },
     last_author: {
         type: DataTypes.NUMBER,
+    },
+    slug: {
+        type: DataTypes.STRING,
     },
 },
 {

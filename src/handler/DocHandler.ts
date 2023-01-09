@@ -81,3 +81,14 @@ export const addView = async(docId: number, ip: string) => {
 
     return newView;
 }
+
+export const getDocByName = async (slug: string) => {
+
+    let doc = await Doc.findAll({
+        where: {
+            slug
+        }
+    })
+
+    return doc;
+}

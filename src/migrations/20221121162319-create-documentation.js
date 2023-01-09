@@ -38,6 +38,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      slug: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
     });
     return documentationTable;
   },

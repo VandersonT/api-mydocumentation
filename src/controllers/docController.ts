@@ -118,3 +118,22 @@ export const addDocView = async (req: Request, res: Response) => {
 
     res.json({error: ""});
 }
+
+export const getDocBySlug = async (req: Request, res: Response) => {
+
+    let { slug } = req.params;
+
+    if(!slug){
+        res.json({ error: 'You must submit a slug to be searched.' });
+        return;
+    }
+
+    let documentation = await doc.getDocByName(slug);
+
+    if(!doc){
+        res.json({ error: "We couldn't find this doc." });
+        return;
+    }
+
+    res.json({ error: '', documentation });
+}
