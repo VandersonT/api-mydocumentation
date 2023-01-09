@@ -85,3 +85,17 @@ export const getTopicByDoc = async (req: Request, res: Response) => {
 
     res.json({error: "", topics});
 }
+
+export const getTopicBySlug = async (req: Request, res: Response) => {
+
+    let { slug } = req.params;
+
+    let topicFound = await topic.getTopicBySlug(slug);
+
+    if(!topicFound){
+        res.json({ error: "We couldn't find this topic." });
+        return;
+    }
+
+    res.json({ error: '', topicFound });
+}

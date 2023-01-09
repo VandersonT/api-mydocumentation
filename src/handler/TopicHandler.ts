@@ -68,3 +68,14 @@ export const getTopicsByDoc = async (id: number) => {
 
     return topics;
 }
+
+export const getTopicBySlug = async (slug: string) => {
+
+    let topic = await Topic.findOne({
+        where: {
+            slug
+        }
+    });
+
+    return topic;
+}
