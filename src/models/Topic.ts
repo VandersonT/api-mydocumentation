@@ -11,6 +11,7 @@ export interface TopicInstance extends Model {
     meta_tags: string;
     doc_id: number;
     slug: string;
+    description: Text;
 }
 
 export const Topic = sequelize.define<TopicInstance>('topic', {
@@ -40,6 +41,10 @@ export const Topic = sequelize.define<TopicInstance>('topic', {
     slug: {
       allowNull: false,
       type: DataTypes.STRING
+    },
+    description: {
+        allowNull: false,
+        type: DataTypes.TEXT
     },
 },
 {
