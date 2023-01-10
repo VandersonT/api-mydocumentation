@@ -55,6 +55,7 @@ router.delete('/doc/:id', DocController.deleteDoc);
 router.post('/doc', DocController.addNewDoc);
 router.put('/doc/:id', DocController.updateDoc);
 router.get('/docBySlug/:slug', DocController.getDocBySlug);
+router.get('/docByName/:search', DocController.getDocByName);
 /*------------------------------------------------------*/
 
 
@@ -82,6 +83,7 @@ router.put('/topic/:id', TopicController.updateTopic);
 router.delete('/topic/:id', TopicController.deleteTopic);
 router.get('/topicByDoc/:id', TopicController.getTopicByDoc);
 router.get('/topicBySlug/:slug', TopicController.getTopicBySlug);
+router.get('/topicByName/:search/:docId', TopicController.getTopicByName);
 /*------------------------------------------------------*/
 
 

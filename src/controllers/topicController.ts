@@ -99,3 +99,22 @@ export const getTopicBySlug = async (req: Request, res: Response) => {
 
     res.json({ error: '', topicFound });
 }
+
+export const getTopicByName = async (req: Request, res: Response) => {
+
+    let { search, docId } = req.params;
+
+    if(!search || !docId){
+        res.json({ error: 'You must submit a search AND a docId.' });
+        return;
+    }
+
+    let topicFound = await topic.getTopicByName(search, parseInt(docId));
+
+    if(!topicFound){
+        res.json({ error: "We couldn't find nothing with that search." });
+        return;
+    }
+
+    res.json({ error: '', topicFound });
+}

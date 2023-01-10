@@ -5,6 +5,7 @@
 */
 
 /*--------------------------Imports--------------------------*/
+import { Op } from 'sequelize';
 import { Doc } from '../models/Documentation';
 import { DocView } from '../models/Doc_view';
 /*-----------------------------------------------------------*/
@@ -82,7 +83,7 @@ export const addView = async(docId: number, ip: string) => {
     return newView;
 }
 
-export const getDocByName = async (slug: string) => {
+export const getDocBySlug = async (slug: string) => {
 
     let doc = await Doc.findOne({
         where: {
@@ -91,4 +92,17 @@ export const getDocByName = async (slug: string) => {
     })
 
     return doc;
+}
+
+export const getDocByName = async (search: string) => {
+
+    let docFound = await Doc.findOne({
+        where: {
+            name: {
+                [Op.iLike]: `%${search}%`
+            }
+        }
+    })
+
+    return docFound; 
 }

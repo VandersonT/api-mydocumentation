@@ -128,7 +128,7 @@ export const getDocBySlug = async (req: Request, res: Response) => {
         return;
     }
 
-    let documentation = await doc.getDocByName(slug);
+    let documentation = await doc.getDocBySlug(slug);
 
     if(!doc){
         res.json({ error: "We couldn't find this doc." });
@@ -136,4 +136,23 @@ export const getDocBySlug = async (req: Request, res: Response) => {
     }
 
     res.json({ error: '', documentation });
+}
+
+export const getDocByName = async (req: Request, res: Response) => {
+
+    let { search } = req.params;
+
+    if(!search){
+        res.json({ error: 'You must submit a search.' })
+        return;
+    }
+
+    let docFound = await doc.getDocByName(search);
+
+    if(!docFound){
+        res.json({ error: "We couldn't find this documentation" });
+        return;
+    }
+
+    res.json({ error: '', docFound });
 }

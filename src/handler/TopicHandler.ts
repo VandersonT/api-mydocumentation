@@ -7,6 +7,7 @@
 /*--------------------------Imports--------------------------*/
 import { Topic } from '../models/Topic';
 import * as helper from '../handler/HelperHandler';
+import { Op } from 'sequelize';
 /*-----------------------------------------------------------*/
 
 export const getTopics = async () => {
@@ -74,6 +75,20 @@ export const getTopicBySlug = async (slug: string) => {
     let topic = await Topic.findOne({
         where: {
             slug
+        }
+    });
+
+    return topic;
+}
+
+export const getTopicByName = async (search: string, doc_id: number) => {
+     
+    let topic = await Topic.findOne({
+        where: {
+            doc_id,
+            title: {
+                [Op.like]: `%${search}%`
+            }
         }
     });
 
