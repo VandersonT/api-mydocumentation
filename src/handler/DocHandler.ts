@@ -96,7 +96,7 @@ export const getDocBySlug = async (slug: string) => {
 
 export const getDocByName = async (search: string) => {
 
-    let docFound = await Doc.findOne({
+    let docFound = await Doc.findAll({
         where: {
             name: {
                 [Op.iLike]: `%${search}%`
