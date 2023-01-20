@@ -60,7 +60,7 @@ export const loginStaff = async (req: Request, res: Response) => {
 
     /*Check Empty Fields*/
     if(!email || !password){
-        res.json({error: "Please, fill in all fields"});
+        res.json({error: "Please, fill in all fields."});
         return;
     }
 

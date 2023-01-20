@@ -38,8 +38,8 @@ const upload = multer({
 const router = Router();
 
 /*------------------Staff-Routes------------------------*/
-router.post('/staff', AdminController.registerStaff);
-router.post('/login', AdminController.loginStaff);
+router.post('/staff', AdminController.registerStaff); //name, email, pass, phone, position
+router.post('/login', AdminController.loginStaff);//Post-> email, password
 router.post('/auth', AdminController.authentication);
 router.put('/staff/:id', AdminController.editStaff);
 router.delete('/staff/:id', AdminController.deleteStaff);

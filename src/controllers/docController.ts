@@ -11,7 +11,9 @@ dotenv.config();
 
 export const getDocs = async (req: Request, res: Response) => {
 
-    let docs = await doc.getDocs();
+    const { page } = req.query;
+
+    let docs = await doc.getDocs(parseInt(page as string));
 
     res.json({error: "", docs});
 }

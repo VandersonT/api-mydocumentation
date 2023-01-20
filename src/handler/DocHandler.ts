@@ -11,9 +11,22 @@ import { DocView } from '../models/Doc_view';
 /*-----------------------------------------------------------*/
 
 
-export const getDocs = async () => {
+export const getDocs = async (page: number) => {
 
-    let docs = await Doc.findAll();
+    let docs;
+    let perPage = 4;
+    let offset = 0;
+
+    if(page){
+        let offset = (page - 1) * perPage;
+        
+        docs = await Doc.findAll({
+            offset: offset,
+            limit: 1
+        });
+    }else{
+        docs = await Doc.findAll();
+    }
 
     return docs;
 }
