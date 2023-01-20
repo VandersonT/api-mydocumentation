@@ -13,19 +13,27 @@ import { DocView } from '../models/Doc_view';
 
 export const getDocs = async (page: number) => {
 
-    let docs;
-    let perPage = 4;
+    let perPage = 2;
     let offset = 0;
+    let docs;
+    let totalPages = await Doc.count();
+    let anotherPage = false;
 
     if(page){
+        (page * perPage >= totalPages) ? (anotherPage = false) : (anotherPage = true);
+
+
         let offset = (page - 1) * perPage;
-        
+
         docs = await Doc.findAll({
             offset: offset,
-            limit: 1
+            limit: perPage
         });
+
+        return [docs, {anotherPage}];
     }else{
         docs = await Doc.findAll();
+        return docs;
     }
 
     return docs;
