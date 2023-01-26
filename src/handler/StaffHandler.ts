@@ -65,13 +65,13 @@ export const signIn = async (email: string, password: string) => {
 export const auth = async (token: string) => {
 
     //Check token and return the user if it was found
-    let userFound = await Admin.findAll({
+    let userFound = await Admin.findOne({
         attributes: ['name', 'email', 'phone', 'position', 'token',],
         where:{token},
         limit: 1
     });
 
-    return (userFound.length > 0) ? userFound : false;
+    return (userFound) ? userFound : false;
 }
 
 export const deleteStaff = async (id: number) => {
