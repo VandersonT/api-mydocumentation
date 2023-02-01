@@ -158,3 +158,12 @@ export const getDocByName = async (req: Request, res: Response) => {
 
     res.json({ error: '', docFound });
 }
+
+export const getDocsMostViewed = async (req: Request, res: Response) => {
+
+    let { amount } = req.params;
+
+    let result = await doc.getDocsMostViewed(parseInt(amount));
+
+    res.json({ error: '', result });
+}

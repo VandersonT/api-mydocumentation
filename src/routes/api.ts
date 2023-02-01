@@ -56,6 +56,7 @@ router.post('/doc', DocController.addNewDoc);
 router.put('/doc/:id', DocController.updateDoc);
 router.get('/docBySlug/:slug', DocController.getDocBySlug);
 router.get('/docByName/:search', DocController.getDocByName);
+router.get('/mostViewedDocs/:amount', DocController.getDocsMostViewed);
 /*------------------------------------------------------*/
 
 

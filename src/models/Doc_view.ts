@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes, BelongsTo } from 'sequelize';
 import internal from 'stream';
 import { sequelize } from '../instances/pg';
 

@@ -8,6 +8,7 @@
 import { Op } from 'sequelize';
 import { Doc } from '../models/Documentation';
 import { DocView } from '../models/Doc_view';
+import sequelize from 'sequelize';
 /*-----------------------------------------------------------*/
 
 
@@ -126,4 +127,35 @@ export const getDocByName = async (search: string) => {
     })
 
     return docFound; 
+}
+
+export const getDocsMostViewed = async (amount: number) => {   
+
+    /*Get all views of all docs*/
+    let views:any = await DocView.findAll({
+        attributes: [
+            'doc_id',
+            [sequelize.fn('count', sequelize.col('doc_id')), 'amount'],
+        ],
+        group: ['doc_id'],
+        order: [[sequelize.col("amount"), "DESC"]],
+        limit: amount
+    })
+
+    /*Links views with their documentation*/
+    let doc = [];
+
+    for(let i = 0; i < views.length; i++){
+        let docSingle = await Doc.findByPk(views[i]['doc_id'],{attributes: ['name']});
+
+        let aux = {
+            name: docSingle?.dataValues['name'],
+            amount: parseInt(views[i].dataValues['amount']),
+            doc_id: views[i]['doc_id'],
+        }
+
+        doc.push(aux);
+    }
+
+    return doc;
 }
