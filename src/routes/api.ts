@@ -37,6 +37,10 @@ const upload = multer({
 
 const router = Router();
 
+/*------------------General-Routes------------------------*/
+router.get('/globalDatas', SystemController.getTotalDocs);
+/*------------------------------------------------------*/
+
 /*------------------Staff-Routes------------------------*/
 router.post('/staff', AdminController.registerStaff); //name, email, pass, phone, position
 router.post('/login', AdminController.loginStaff);//Post-> email, password

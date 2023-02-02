@@ -150,3 +150,10 @@ export const updateMediaInfo = async (req: Request, res: Response) => {
     res.json({ error: '', updatedMedia })
 
 }
+
+export const getTotalDocs = async (req: Request, res: Response) => {
+
+    let globalData = await system.getTotalDatas();
+
+    res.json({ error: '', globalData })
+}

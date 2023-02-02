@@ -9,6 +9,8 @@
 import { System } from '../models/System';
 import { View } from '../models/View';
 import { Media } from '../models/Media';
+import { Doc } from '../models/Documentation';
+import { Admin } from '../models/Admin';
 /*-----------------------------------------------------------*/
 
 export const getSystemStatus = async () => {
@@ -93,4 +95,13 @@ export const updateMedia = async(id: number, title: string, altText: string) => 
     }
 
     return false;
+}
+
+export const getTotalDatas = async () => {
+
+    let totalDocs = await Doc.count();
+    let totalStaffs = await Admin.count();
+    let totalViews = await View.count();
+    
+    return {totalDocs, totalStaffs, totalViews};
 }
