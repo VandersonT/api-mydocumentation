@@ -13,9 +13,11 @@ export const getDocs = async (req: Request, res: Response) => {
 
     const { page } = req.query;
 
-    let docs = await doc.getDocs(parseInt(page as string));
+    let response = await doc.getDocs(parseInt(page as string));
 
-    res.json({error: "", docs});
+    console.log(response[0]);
+
+    res.json({error: "", docs: response[0], anotherPage: response[1] });
 }
 
 export const getDoc = async (req: Request, res: Response) => {

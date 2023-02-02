@@ -16,7 +16,7 @@ export const getDocs = async (page: number) => {
 
     let perPage = 4;
     let offset = 0;
-    let docs: any;
+    let docsFound: any;
     let totalPages = await Doc.count();
     let anotherPage = false;
 
@@ -26,24 +26,24 @@ export const getDocs = async (page: number) => {
 
         let offset = (page - 1) * perPage;
 
-        docs = await Doc.findAll({
+        docsFound = await Doc.findAll({
             offset: offset,
             limit: perPage
         });
 
-        for(let i = 0; i < docs.length; i++){
-            let views = await DocView.count({
-                where: { doc_id: docs[i]['id'] }
-            });
-            
-            docs[i].dataValues['views'] = views;
-        }
-
-        return [docs, {anotherPage}];
     }else{
-        docs = await Doc.findAll();
-        return docs;
+        docsFound = await Doc.findAll();
     }
+
+    for(let i = 0; i < docsFound.length; i++){
+        let views = await DocView.count({
+            where: { doc_id: docsFound[i]['id'] }
+        });
+        
+        docsFound[i].dataValues['views'] = views;
+    }
+
+    return [docsFound, anotherPage];
 }
 
 export const getDoc = async (id: number) => {
