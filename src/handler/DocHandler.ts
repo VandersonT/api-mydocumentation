@@ -14,9 +14,9 @@ import sequelize from 'sequelize';
 
 export const getDocs = async (page: number) => {
 
-    let perPage = 2;
+    let perPage = 4;
     let offset = 0;
-    let docs;
+    let docs: any;
     let totalPages = await Doc.count();
     let anotherPage = false;
 
@@ -31,13 +31,19 @@ export const getDocs = async (page: number) => {
             limit: perPage
         });
 
+        for(let i = 0; i < docs.length; i++){
+            let views = await DocView.count({
+                where: { doc_id: docs[i]['id'] }
+            });
+            
+            docs[i].dataValues['views'] = views;
+        }
+
         return [docs, {anotherPage}];
     }else{
         docs = await Doc.findAll();
         return docs;
     }
-
-    return docs;
 }
 
 export const getDoc = async (id: number) => {
