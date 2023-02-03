@@ -15,8 +15,6 @@ export const getDocs = async (req: Request, res: Response) => {
 
     let response = await doc.getDocs(parseInt(page as string));
 
-    console.log(response[0]);
-
     res.json({error: "", docs: response[0], anotherPage: response[1] });
 }
 
@@ -145,20 +143,16 @@ export const getDocBySlug = async (req: Request, res: Response) => {
 export const getDocByName = async (req: Request, res: Response) => {
 
     let { search } = req.params;
+    const { page } = req.query;
 
     if(!search){
         res.json({ error: 'You must submit a search.' })
         return;
     }
 
-    let docFound = await doc.getDocByName(search);
+    let response = await doc.getDocByName(search, parseInt(page as string));
 
-    if(!docFound){
-        res.json({ error: "We couldn't find this documentation" });
-        return;
-    }
-
-    res.json({ error: '', docFound });
+    res.json({ error: '', docFound: response[0], anotherPage: response[1] });
 }
 
 export const getDocsMostViewed = async (req: Request, res: Response) => {

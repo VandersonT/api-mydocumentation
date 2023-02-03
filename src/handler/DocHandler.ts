@@ -122,17 +122,50 @@ export const getDocBySlug = async (slug: string) => {
     return doc;
 }
 
-export const getDocByName = async (search: string) => {
+export const getDocByName = async (search: string, page: number) => {
 
-    let docFound = await Doc.findAll({
-        where: {
-            name: {
-                [Op.iLike]: `%${search}%`
+    let perPage = 4;
+    let offset = 0;
+    let docsFound;
+    let totalPages = 0;
+    let anotherPage = false;
+
+    if(page){
+        let offset = (page - 1) * perPage;
+        totalPages = await Doc.count({where: {name:{[Op.iLike]: `%${search}%`}}});
+
+        docsFound = await Doc.findAll({
+            where: {
+                name: {
+                    [Op.iLike]: `%${search}%`
+                }
+            },
+            offset: offset,
+            limit: perPage
+        });
+
+        console.log(totalPages);
+
+        (page * perPage >= totalPages) ? (anotherPage = false) : (anotherPage = true);
+    }else{
+        docsFound = await Doc.findAll({
+            where: {
+                name: {
+                    [Op.iLike]: `%${search}%`
+                }
             }
-        }
-    })
+        })
+    }
 
-    return docFound; 
+    for(let i = 0; i < docsFound.length; i++){
+        let views = await DocView.count({
+            where: { doc_id: docsFound[i]['id'] }
+        });
+        
+        docsFound[i].dataValues['views'] = views;
+    }
+
+    return [docsFound, anotherPage];
 }
 
 export const getDocsMostViewed = async (amount: number) => {   
