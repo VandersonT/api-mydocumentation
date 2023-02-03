@@ -97,11 +97,19 @@ export const updateMedia = async(id: number, title: string, altText: string) => 
     return false;
 }
 
-export const getTotalDatas = async () => {
+export const getDatas = async () => {
 
     let totalDocs = await Doc.count();
     let totalStaffs = await Admin.count();
     let totalViews = await View.count();
+    let systemStatus = await System.findOne();
+    console.log(systemStatus?.dataValues['is_active'])
     
-    return {totalDocs, totalStaffs, totalViews};
+    return {
+        totalDocs,
+        totalStaffs,
+        totalViews, 
+        systemStatus: systemStatus?.dataValues['is_active'],
+        systemVersion: systemStatus?.dataValues['version']
+    };
 }

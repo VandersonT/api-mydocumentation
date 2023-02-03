@@ -38,7 +38,7 @@ const upload = multer({
 const router = Router();
 
 /*------------------General-Routes------------------------*/
-router.get('/globalDatas', SystemController.getTotalDocs);
+router.get('/globalDatas', SystemController.getGlobalData);
 /*------------------------------------------------------*/
 
 /*------------------Staff-Routes------------------------*/

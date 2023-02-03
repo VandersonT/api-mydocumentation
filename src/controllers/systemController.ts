@@ -151,9 +151,9 @@ export const updateMediaInfo = async (req: Request, res: Response) => {
 
 }
 
-export const getTotalDocs = async (req: Request, res: Response) => {
+export const getGlobalData = async (req: Request, res: Response) => {
 
-    let globalData = await system.getTotalDatas();
+    let globalData = await system.getDatas();
 
     res.json({ error: '', globalData })
 }
