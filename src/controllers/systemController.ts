@@ -9,7 +9,7 @@ export const getSystemStatus = async (req: Request, res: Response) => {
 
     let systemStatus = await system.getSystemStatus();
 
-    if(systemStatus.length < 1){
+    if(!systemStatus){
         res.json({error: "|SevereError| Couldn't find any system information"});
         return;
     }

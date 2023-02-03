@@ -15,7 +15,7 @@ import { Admin } from '../models/Admin';
 
 export const getSystemStatus = async () => {
 
-    let systemInfo = await System.findAll({limit: 1});
+    let systemInfo = await System.findOne();
 
     return systemInfo;
 }
