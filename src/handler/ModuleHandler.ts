@@ -6,6 +6,7 @@
 
 /*--------------------------Imports--------------------------*/
 import { Module } from '../models/Module';
+import { Topic } from '../models/Topic';
 /*-----------------------------------------------------------*/
 
 export const getModules = async () => {
@@ -50,6 +51,12 @@ export const editModule = async (id: number, title: string, doc_id: number) => {
 export const deleteModule = async (id: number) => {
 
     let removedModule = await Module.destroy({where: {id}});
+
+    let deletedTopics = await Topic.destroy({
+        where: {
+            module_id: id
+        }
+    });
 
     return removedModule;
 }
