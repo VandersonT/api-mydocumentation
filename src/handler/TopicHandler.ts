@@ -24,14 +24,17 @@ export const getTopic = async (id: number) => {
     return topic;
 }
 
-export const createTopic = async (title: string, content: Text, module_id: number, image: string, meta_tags: string) => {
+export const createTopic = async (title: string, content: Text, module_id: number, image: string, meta_tags: string, slug: string, description: Text, doc_id: number) => {
 
     let createdTopic = await Topic.create({
         title,
         content,
         module_id,
         image,
-        meta_tags
+        meta_tags,
+        doc_id,
+        slug,
+        description
     });
 
     return createdTopic;

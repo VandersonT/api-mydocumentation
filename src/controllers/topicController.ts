@@ -26,14 +26,14 @@ export const getTopic = async (req: Request, res: Response) => {
 
 export const createANewTopic = async (req: Request, res: Response) => {
 
-    const { title, content, module_id, image, metaTags } = req.body;
+    const { title, content, module_id, image, metaTags,doc_id, slug, description } = req.body;
 
-    if(!title || !content || !module_id || !image || !metaTags){ 
+    if(!title || !content || !module_id || !image || !metaTags || !description || !slug || !doc_id){ 
         res.json({error: "Don't send empty fields."});
         return;
     }
 
-    let createdTopic = await topic.createTopic(title, content, module_id, image, metaTags);
+    let createdTopic = await topic.createTopic(title, content, module_id, image, metaTags, slug, description, doc_id);
 
     res.json({error: "", createdTopic});
 }
