@@ -65,6 +65,11 @@ export const addNewDoc = async (req: Request, res: Response) => {
     /*Save doc data to the data base*/
     let newDoc = await doc.addDoc(name, description, image, parseInt(author), slug);
 
+    if(!newDoc){
+        res.json({error: "This slug is already in use."});
+        return;
+    }
+
     /*Return the result*/
     res.json({error: "", newDoc});
 }
@@ -72,7 +77,7 @@ export const addNewDoc = async (req: Request, res: Response) => {
 export const updateDoc = async (req: Request, res: Response) => {
     
     const { id } = req.params;
-    const { name, description, image, author} = req.body;
+    const { name, description, image, author, slug} = req.body;
 
     // Check id field
     if(!id){
@@ -81,12 +86,15 @@ export const updateDoc = async (req: Request, res: Response) => {
     }
 
     /*Try to update*/
-    let updateDoc = await doc.updateDoc(parseInt(id), name, description, image, parseInt(author));
+    let updateDoc = await doc.updateDoc(parseInt(id), name, description, image, parseInt(author), slug);
 
 
     /*Return the result*/
-    if(!updateDoc){
-        res.json({error: "We couldn't find that doc"});
+    if(updateDoc == 1){
+        res.json({error: "This slug is already in use."});
+        return;
+    }else if(updateDoc == 2){
+        res.json({error: "We couldn't find that doc."});
         return;
     }
 

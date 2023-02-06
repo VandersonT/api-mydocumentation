@@ -66,6 +66,14 @@ export const deleteDoc = async (id: number) => {
 }
 
 export const addDoc = async (name: string, description: string, image: string, author: number, slug: string) => {
+    
+    let slugFound = await Doc.findAll({
+        where: {slug}
+    });
+
+    if(slugFound.length > 0)
+        return false;
+
     let timeStamp = Math.floor(Date.now() / 1000);
 
     let newDoc = await Doc.create({
@@ -82,7 +90,14 @@ export const addDoc = async (name: string, description: string, image: string, a
     return newDoc;
 }
 
-export const updateDoc = async (id: number, name: string, description: string, image: string, author: number) => {
+export const updateDoc = async (id: number, name: string, description: string, image: string, author: number, slug: string) => {
+
+    let slugFound = await Doc.findAll({
+        where: {slug}
+    });
+
+    if(slugFound.length > 0)
+        return 1;
 
     let updatedDoc = await Doc.findByPk(id);
     
@@ -90,6 +105,7 @@ export const updateDoc = async (id: number, name: string, description: string, i
         if(name) updatedDoc.name = name;
         if(description) updatedDoc.description = description;
         if(image) updatedDoc.image = image;
+        if(slug) updatedDoc.slug = slug;
         updatedDoc.updated_at = new Date();
         updatedDoc.last_author = author;
         await updatedDoc.save();
@@ -97,7 +113,7 @@ export const updateDoc = async (id: number, name: string, description: string, i
         return updatedDoc;
     }
 
-    return false;
+    return 2;
 }
 
 export const getView = (docId: number) => {
