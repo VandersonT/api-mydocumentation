@@ -54,16 +54,16 @@ export const deleteDoc = async (req: Request, res: Response) => {
 
 export const addNewDoc = async (req: Request, res: Response) => {
 
-    const { name, description, image, author} = req.body;
+    const { name, description, image, author, slug} = req.body;
 
     // Check all field
-    if(!name || !description || !image || !author){
+    if(!name || !description || !image || !author || !slug){
         res.json({error: "You must send us all fields"});
         return;
     }
 
     /*Save doc data to the data base*/
-    let newDoc = await doc.addDoc(name, description, image, parseInt(author));
+    let newDoc = await doc.addDoc(name, description, image, parseInt(author), slug);
 
     /*Return the result*/
     res.json({error: "", newDoc});

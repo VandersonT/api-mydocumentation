@@ -32,7 +32,11 @@ export const getDocs = async (page: number) => {
         });
 
     }else{
-        docsFound = await Doc.findAll();
+        docsFound = await Doc.findAll({
+            order: [
+                ['updated_at', 'DESC']
+            ]
+        });
     }
 
     for(let i = 0; i < docsFound.length; i++){
@@ -61,8 +65,9 @@ export const deleteDoc = async (id: number) => {
     return removedDoc;
 }
 
-export const addDoc = async (name: string, description: string, image: string, author: number) => {
-        
+export const addDoc = async (name: string, description: string, image: string, author: number, slug: string) => {
+    let timeStamp = Math.floor(Date.now() / 1000);
+
     let newDoc = await Doc.create({
         name,
         description,
@@ -70,7 +75,8 @@ export const addDoc = async (name: string, description: string, image: string, a
         created_at: new Date(),
         author,
         updated_at: new Date(),
-        last_author: author
+        last_author: author,
+        slug
     });
     
     return newDoc;

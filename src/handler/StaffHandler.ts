@@ -66,7 +66,7 @@ export const auth = async (token: string) => {
 
     //Check token and return the user if it was found
     let userFound = await Admin.findOne({
-        attributes: ['name', 'email', 'phone', 'position', 'token',],
+        attributes: ['id', 'name', 'email', 'phone', 'position', 'token',],
         where:{token},
         limit: 1
     });
