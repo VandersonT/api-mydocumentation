@@ -101,7 +101,7 @@ export const editUser = async (id: number, name: string, email: string, pass: st
 
 export const getAllAdmins = async () => {
     let admins = await Admin.findAll({
-        attributes: ['name', 'email', 'phone', 'position', 'token']
+        attributes: ['id', 'name', 'email', 'phone', 'position', 'token']
     });
 
     return admins;
@@ -109,7 +109,7 @@ export const getAllAdmins = async () => {
 
 export const getAdmin = async (id: number) => {
     let admin = await Admin.findByPk(id, {
-        attributes: ['name', 'email', 'phone', 'position', 'token']
+        attributes: ['id', 'name', 'email', 'phone', 'position', 'token']
     });
 
     return admin;
