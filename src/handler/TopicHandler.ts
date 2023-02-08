@@ -40,7 +40,7 @@ export const createTopic = async (title: string, content: Text, module_id: numbe
     return createdTopic;
 }
 
-export const updateTopic = async (id: number, title: string, content: Text, module_id: number, image: string, metaTags: string) => {
+export const updateTopic = async (id: number, title: string, content: Text, module_id: number, image: string, metaTags: string, description: Text, slug: string ) => {
     let topicFound = await Topic.findByPk(id);
 
     if(topicFound){
@@ -49,6 +49,8 @@ export const updateTopic = async (id: number, title: string, content: Text, modu
         if(module_id) topicFound.module_id = module_id;
         if(image) topicFound.image = image;
         if(metaTags) topicFound.meta_tags = metaTags;
+        if(description) topicFound.description = description;
+        if(slug) topicFound.slug = slug;
         await topicFound.save();
 
         return topicFound;

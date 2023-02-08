@@ -41,14 +41,14 @@ export const createANewTopic = async (req: Request, res: Response) => {
 export const updateTopic = async (req: Request, res: Response) => {
 
     const { id } = req.params;
-    const { title, content, module_id, image, metaTags } = req.body;
+    const { title, content, module_id, image, metaTags, description, slug } = req.body;
 
     if(!id){
         res.json({error: "You must send an id."});
         return;
     }
 
-    let updatedTopic = await topic.updateTopic(parseInt(id), title, content, parseInt(module_id), image, metaTags);
+    let updatedTopic = await topic.updateTopic(parseInt(id), title, content, parseInt(module_id), image, metaTags, description, slug );
 
     if(!updatedTopic){
         res.json({error: "We couldn't find that topic."});
