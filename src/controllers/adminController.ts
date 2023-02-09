@@ -117,6 +117,7 @@ export const editStaff = async (req: Request, res: Response) => {
         res.json({error: "You must send us an id."});
         return;
     }
+    
 
     /*Check email if it was sent*/
     if(email && !helper.emailValidate(email)){

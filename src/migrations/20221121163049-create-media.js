@@ -28,6 +28,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
+      title: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
     });
     return mediaTable;
   },
