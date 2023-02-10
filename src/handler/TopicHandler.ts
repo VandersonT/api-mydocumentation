@@ -12,7 +12,11 @@ import { Op } from 'sequelize';
 
 export const getTopics = async () => {
 
-    let topics = await Topic.findAll();
+    let topics = await Topic.findAll({
+        order: [
+            ['id', 'ASC']
+        ]
+    });
 
     return topics;
 }
@@ -69,7 +73,10 @@ export const deleteTopic = async (id: number) => {
 export const getTopicsByDoc = async (id: number) => {
 
     let topics = await Topic.findAll({
-        where: {doc_id: id}
+        where: {doc_id: id},
+        order: [
+            ['id', 'ASC']
+        ]
     });
 
     return topics;

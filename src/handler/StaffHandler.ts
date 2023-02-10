@@ -101,7 +101,10 @@ export const editUser = async (id: number, name: string, email: string, pass: st
 
 export const getAllAdmins = async () => {
     let admins = await Admin.findAll({
-        attributes: ['id', 'name', 'email', 'phone', 'position', 'token']
+        attributes: ['id', 'name', 'email', 'phone', 'position', 'token'],
+        order: [
+            ['id', 'ASC']
+        ]
     });
 
     return admins;

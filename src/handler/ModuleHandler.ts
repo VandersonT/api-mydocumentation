@@ -11,7 +11,11 @@ import { Topic } from '../models/Topic';
 
 export const getModules = async () => {
     
-    let modules = await Module.findAll();
+    let modules = await Module.findAll({
+        order: [
+            ['id', 'ASC']
+        ]
+    });
 
     return modules;
 }
