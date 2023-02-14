@@ -59,12 +59,12 @@ export const addView = async (req: Request, res: Response) => {
 
 export const uploadFile = async (req: Request, res: Response) => {
 
-    let { title, altText, author } = req.body;
+    let { title } = req.body;
 
-    if(!title || !altText || !author){
+    /*if(!title || !altText || !author){
         res.json({ error: 'You must submit the image information.' });
         return;
-    }
+    }*/
 
     if(req.file){
 
@@ -75,7 +75,7 @@ export const uploadFile = async (req: Request, res: Response) => {
         /*At this point the image is already saved.
         So now we just need to save it in the database and return the result*/
         
-        await system.saveMedia(title, req.file.filename, altText, author);
+        await system.saveMedia(req.file.filename);
 
         res.json({ image: req.file.filename });
 

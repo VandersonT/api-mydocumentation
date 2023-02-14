@@ -50,13 +50,10 @@ export const addView = async(ip: string) => {
     return createdView;
 }
 
-export const saveMedia = async (title: string, mediaName: string, alternative_text: string, author: number) => {
+export const saveMedia = async (mediaName: string) => {
 
     let createdUser = await Media.create({
-        title,
         name: mediaName,
-        alternative_text,
-        author,
         created_at: new Date()
     });
 
